@@ -45,19 +45,18 @@ function createTimeOutEvent(createEmployeeRecord, dataStamp) {
 function hoursWorkedOnDate(createEmployeeRecord, date) {
     // Given a date, find the number of hours elapsed between that date's timeInEvent and timeOutEvent
 
-    // let a = createEmployeeRecord.timeInEvents.reduce(el =>
-    //   el.date === date)
-    // console.log(`a: `, a)
 
     let a = createEmployeeRecord.timeInEvents.find(el => el.date === date)
     let b = createEmployeeRecord.timeOutEvents.find(el => el.date === date)
-    let workedHour = parseInt((b.hour - a.hour).toString().slice(0, 1))
-        //console.log(`a: `, a)
-        //console.log(`b:`, b)
-        //console.log(`Hours worked on date : `, worked)
+
+    a = parseInt((a.hour).toString().slice(0, -2))
+    b = parseInt((b.hour).toString().slice(0, -2))
+    let workedHour = b - a
     return workedHour
 
 }
+
+
 
 function wagesEarnedOnDate(createEmployeeRecord, date) {
 
@@ -80,14 +79,16 @@ function allWagesFor(employee) {
 
 }
 
+function calculatePayroll(employees) {
 
-function findEmployeeByFirstName(srcArray, firstName) {
-
-
+    return employees.reduce((total, element) =>
+        total + allWagesFor(element), 0)
 
 }
 
-function calculatePayroll(Array) {
 
+function findEmployeeByFirstName(srcArray, firstName) {
 
+    let result = srcArray.find(element => element.firstName == firstName)
+    return result
 }
