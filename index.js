@@ -17,9 +17,10 @@ function createEmployeeRecord(arrayOfEmployeeInfo) {
 
 function createEmployeeRecords(employeeOfArray) {
 
-    return employeeOfArray.map(el =>
-        Object.assign({}, createEmployeeRecord(el))
-    )
+    return employeeOfArray.map(function(el) {
+        //Object.assign({}, createEmployeeRecord(el))
+        return createEmployeeRecord(el)
+    })
 
 
 }
@@ -37,7 +38,7 @@ function createTimeOutEvent(createEmployeeRecord, dataStamp) {
     const date = dataStamp.split(" ")[0]
     const hour = parseInt(dataStamp.split(" ")[1])
 
-    createEmployeeRecord.timeOutEvents.push({ type: "TimeOut", date: date, hour: hour })
+    createEmployeeRecord.timeOutEvents.push({ type: "TimeOut", date, hour: hour })
     return createEmployeeRecord
 }
 
@@ -45,11 +46,9 @@ function createTimeOutEvent(createEmployeeRecord, dataStamp) {
 function hoursWorkedOnDate(createEmployeeRecord, date) {
     // Given a date, find the number of hours elapsed between that date's timeInEvent and timeOutEvent
 
-
     let a = createEmployeeRecord.timeInEvents.find(el => el.date === date)
     let b = createEmployeeRecord.timeOutEvents.find(el => el.date === date)
-        //a = parseInt((a.hour).toString().slice(0, -2))
-        //b = parseInt((b.hour).toString().slice(0, -2))
+
     let workedHour = (b.hour - a.hour) / 100
     return workedHour
 
