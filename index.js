@@ -48,10 +48,9 @@ function hoursWorkedOnDate(createEmployeeRecord, date) {
 
     let a = createEmployeeRecord.timeInEvents.find(el => el.date === date)
     let b = createEmployeeRecord.timeOutEvents.find(el => el.date === date)
-
-    a = parseInt((a.hour).toString().slice(0, -2))
-    b = parseInt((b.hour).toString().slice(0, -2))
-    let workedHour = b - a
+        //a = parseInt((a.hour).toString().slice(0, -2))
+        //b = parseInt((b.hour).toString().slice(0, -2))
+    let workedHour = (b.hour - a.hour) / 100
     return workedHour
 
 }
@@ -68,15 +67,13 @@ function wagesEarnedOnDate(createEmployeeRecord, date) {
 }
 
 function allWagesFor(employee) {
-    //find avaiable dates 
+
     let total = 0
     for (let element of employee.timeOutEvents) {
         let date = element.date
         total += wagesEarnedOnDate(employee, date)
-
     }
     return total
-
 }
 
 function calculatePayroll(employees) {
