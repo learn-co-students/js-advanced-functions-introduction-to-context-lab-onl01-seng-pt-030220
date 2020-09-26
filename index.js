@@ -52,14 +52,12 @@ function createTimeOutEvent(employeeRecord, dateStamp){
 
 
     function hoursWorkedOnDate(record,date){
-        var i = 0 
-        for (i == 0; i < record.timeInEvents.length; i++ ){
-        const timeIn = record.timeInEvents[i].hour
-        const timeOut = record.timeOutEvents[i].hour
+        const inFoundDate = record.timeInEvents.find(obj => obj.date === date)
+        const outFoundDate = record.timeOutEvents.find(obj => obj.date === date)
+        const timeIn = inFoundDate.hour
+        const timeOut = outFoundDate.hour
         const total = (timeOut - timeIn) / 100 
-        // console.log(total)
         return total
-        } 
 }; 
 
 function wagesEarnedOnDate(record, date){
@@ -76,12 +74,29 @@ const dates = record.timeInEvents.map(date => {
     return date.date
     })
     // we have an array of dates now. 
-    const total = [] 
-    console.log(record.timeInEvents[1])
+   const total = [0] 
     dates.forEach(date => {
     const money = wagesEarnedOnDate(record,date)
-    console.log(money)
+    total.push(money)
     })
+    const newTotal = total.reduce((total, amount) => total + amount)
+    return newTotal
 }
 
 
+function findEmployeeByFirstName(srcArray, firstName){
+// console.log(srcArray)
+const findName = srcArray.find(obj => obj.firstName === firstName)
+return findName
+}
+
+function calculatePayroll(array){
+// console.log(array)
+const allWages = [] 
+array.forEach(obj => {
+    const wages = allWagesFor(obj)
+    allWages.push(wages)
+})
+const newTotal = allWages.reduce((total, amount) =>total + amount)
+return newTotal
+}
