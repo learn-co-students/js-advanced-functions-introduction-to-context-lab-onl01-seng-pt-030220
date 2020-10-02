@@ -1,5 +1,5 @@
 # JavaScript Advanced Functions: Introduction to Context
-
+ 
 ## Learning Goals
 
 - Define the term "record"
