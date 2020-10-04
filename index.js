@@ -83,9 +83,3 @@ function calculatePayroll(srcArray){
     return memo + allWagesFor(src)
   }, 0)
 };
-
-
-// let marc = ['marcos', 'rodriguez', 'tech', 45]
-// console.log(hoursWorkedOnDate(marc, "0044-03-15"))
-// let marcVans = [['marcos', 'rodriguez', 'tech', 45], ['vanessa', 'rodriguez', 'M.A.', 50]]
-// console.log(createEmployeeRecords(marcVans))
