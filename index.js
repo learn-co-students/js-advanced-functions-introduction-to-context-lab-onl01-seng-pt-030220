@@ -48,9 +48,8 @@ function hoursWorkedOnDate(employeeObj, dateWorked){
   const hourClockedIn = dateIn.hour;
   const dateOut = employeeObj.timeOutEvents.find(event=>{ return event.date === dateWorked});
   const hourClockedOut = dateOut.hour;
-  let hoursWorked = (hourClockedOut - hourClockedIn) / 100;
 
-  return hoursWorked;
+  return (hourClockedOut - hourClockedIn) / 100;
 };
 
 
@@ -80,10 +79,9 @@ function findEmployeeByFirstName(srcArray, firstName){
 
 
 function calculatePayroll(srcArray){
-  const allWages = srcArray.map(employee => {
-    return allWagesFor(employee)
-  })
-  return allWages.reduce((total, wage)=> total + wage, 0)
+  return srcArray.reduce((memo, src)=>{
+    return memo + allWagesFor(src)
+  }, 0)
 };
 
 
